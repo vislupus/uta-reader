@@ -1,0 +1,10 @@
+^C:\USERS\N.BOJINOV\DOWNLOADS\FLUTTER\UTA_READER_APP\BUILD\WINDOWS\X64\_DEPS\OBJECTBOX-DOWNLOAD-SUBBUILD\CMAKEFILES\98CC5ECFA95E858A3528596654633053\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild -BC:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/objectbox-download-populate.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

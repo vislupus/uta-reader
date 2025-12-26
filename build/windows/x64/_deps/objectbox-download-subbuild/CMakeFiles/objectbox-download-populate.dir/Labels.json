@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/CMakeFiles/objectbox-download-populate"
+		},
+		{
+			"file" : "C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/CMakeFiles/98cc5ecfa95e858a3528596654633053/objectbox-download-populate.rule"
+		},
+		{
+			"file" : "C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/CMakeFiles/e465bdf2c73a9c99d1f68e649e59f17c/objectbox-download-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/CMakeFiles/57af1ff91bd3b4414cdfe151513660b8/objectbox-download-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/CMakeFiles/57af1ff91bd3b4414cdfe151513660b8/objectbox-download-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/CMakeFiles/57af1ff91bd3b4414cdfe151513660b8/objectbox-download-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/CMakeFiles/57af1ff91bd3b4414cdfe151513660b8/objectbox-download-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/CMakeFiles/57af1ff91bd3b4414cdfe151513660b8/objectbox-download-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/CMakeFiles/57af1ff91bd3b4414cdfe151513660b8/objectbox-download-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/CMakeFiles/57af1ff91bd3b4414cdfe151513660b8/objectbox-download-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/CMakeFiles/57af1ff91bd3b4414cdfe151513660b8/objectbox-download-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"objectbox-download-populate"
+		],
+		"name" : "objectbox-download-populate"
+	}
+}

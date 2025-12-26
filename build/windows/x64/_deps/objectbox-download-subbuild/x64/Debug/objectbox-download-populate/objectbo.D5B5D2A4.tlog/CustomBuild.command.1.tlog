@@ -1,0 +1,152 @@
+^C:\USERS\N.BOJINOV\DOWNLOADS\FLUTTER\UTA_READER_APP\BUILD\WINDOWS\X64\_DEPS\OBJECTBOX-DOWNLOAD-SUBBUILD\CMAKEFILES\57AF1FF91BD3B4414CDFE151513660B8\OBJECTBOX-DOWNLOAD-POPULATE-MKDIR.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/objectbox-download-populate-prefix/tmp/objectbox-download-populate-mkdirs.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/objectbox-download-populate-prefix/src/objectbox-download-populate-stamp/Debug/objectbox-download-populate-mkdir
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\N.BOJINOV\DOWNLOADS\FLUTTER\UTA_READER_APP\BUILD\WINDOWS\X64\_DEPS\OBJECTBOX-DOWNLOAD-SUBBUILD\CMAKEFILES\57AF1FF91BD3B4414CDFE151513660B8\OBJECTBOX-DOWNLOAD-POPULATE-DOWNLOAD.RULE
+setlocal
+cd C:\Users\n.bojinov\Downloads\Flutter\uta_reader_app\build\windows\x64\_deps
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/objectbox-download-populate-prefix/src/objectbox-download-populate-stamp/download-objectbox-download-populate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/objectbox-download-populate-prefix/src/objectbox-download-populate-stamp/verify-objectbox-download-populate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/objectbox-download-populate-prefix/src/objectbox-download-populate-stamp/extract-objectbox-download-populate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/objectbox-download-populate-prefix/src/objectbox-download-populate-stamp/Debug/objectbox-download-populate-download
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\N.BOJINOV\DOWNLOADS\FLUTTER\UTA_READER_APP\BUILD\WINDOWS\X64\_DEPS\OBJECTBOX-DOWNLOAD-SUBBUILD\CMAKEFILES\57AF1FF91BD3B4414CDFE151513660B8\OBJECTBOX-DOWNLOAD-POPULATE-UPDATE.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/objectbox-download-populate-prefix/src/objectbox-download-populate-stamp/Debug/objectbox-download-populate-update
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\N.BOJINOV\DOWNLOADS\FLUTTER\UTA_READER_APP\BUILD\WINDOWS\X64\_DEPS\OBJECTBOX-DOWNLOAD-SUBBUILD\CMAKEFILES\57AF1FF91BD3B4414CDFE151513660B8\OBJECTBOX-DOWNLOAD-POPULATE-PATCH.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/objectbox-download-populate-prefix/src/objectbox-download-populate-stamp/Debug/objectbox-download-populate-patch
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\N.BOJINOV\DOWNLOADS\FLUTTER\UTA_READER_APP\BUILD\WINDOWS\X64\_DEPS\OBJECTBOX-DOWNLOAD-SUBBUILD\CMAKEFILES\57AF1FF91BD3B4414CDFE151513660B8\OBJECTBOX-DOWNLOAD-POPULATE-CONFIGURE.RULE
+setlocal
+cd C:\Users\n.bojinov\Downloads\Flutter\uta_reader_app\build\windows\x64\_deps\objectbox-download-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/objectbox-download-populate-prefix/src/objectbox-download-populate-stamp/Debug/objectbox-download-populate-configure
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\N.BOJINOV\DOWNLOADS\FLUTTER\UTA_READER_APP\BUILD\WINDOWS\X64\_DEPS\OBJECTBOX-DOWNLOAD-SUBBUILD\CMAKEFILES\57AF1FF91BD3B4414CDFE151513660B8\OBJECTBOX-DOWNLOAD-POPULATE-BUILD.RULE
+setlocal
+cd C:\Users\n.bojinov\Downloads\Flutter\uta_reader_app\build\windows\x64\_deps\objectbox-download-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/objectbox-download-populate-prefix/src/objectbox-download-populate-stamp/Debug/objectbox-download-populate-build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\N.BOJINOV\DOWNLOADS\FLUTTER\UTA_READER_APP\BUILD\WINDOWS\X64\_DEPS\OBJECTBOX-DOWNLOAD-SUBBUILD\CMAKEFILES\57AF1FF91BD3B4414CDFE151513660B8\OBJECTBOX-DOWNLOAD-POPULATE-INSTALL.RULE
+setlocal
+cd C:\Users\n.bojinov\Downloads\Flutter\uta_reader_app\build\windows\x64\_deps\objectbox-download-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/objectbox-download-populate-prefix/src/objectbox-download-populate-stamp/Debug/objectbox-download-populate-install
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\N.BOJINOV\DOWNLOADS\FLUTTER\UTA_READER_APP\BUILD\WINDOWS\X64\_DEPS\OBJECTBOX-DOWNLOAD-SUBBUILD\CMAKEFILES\57AF1FF91BD3B4414CDFE151513660B8\OBJECTBOX-DOWNLOAD-POPULATE-TEST.RULE
+setlocal
+cd C:\Users\n.bojinov\Downloads\Flutter\uta_reader_app\build\windows\x64\_deps\objectbox-download-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/objectbox-download-populate-prefix/src/objectbox-download-populate-stamp/Debug/objectbox-download-populate-test
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\N.BOJINOV\DOWNLOADS\FLUTTER\UTA_READER_APP\BUILD\WINDOWS\X64\_DEPS\OBJECTBOX-DOWNLOAD-SUBBUILD\CMAKEFILES\E465BDF2C73A9C99D1F68E649E59F17C\OBJECTBOX-DOWNLOAD-POPULATE-COMPLETE.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E make_directory C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/CMakeFiles/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/CMakeFiles/Debug/objectbox-download-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/objectbox-download-populate-prefix/src/objectbox-download-populate-stamp/Debug/objectbox-download-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\N.BOJINOV\DOWNLOADS\FLUTTER\UTA_READER_APP\BUILD\WINDOWS\X64\_DEPS\OBJECTBOX-DOWNLOAD-SUBBUILD\CMAKEFILES\98CC5ECFA95E858A3528596654633053\OBJECTBOX-DOWNLOAD-POPULATE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\N.BOJINOV\DOWNLOADS\FLUTTER\UTA_READER_APP\BUILD\WINDOWS\X64\_DEPS\OBJECTBOX-DOWNLOAD-SUBBUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild -BC:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild --check-stamp-file C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

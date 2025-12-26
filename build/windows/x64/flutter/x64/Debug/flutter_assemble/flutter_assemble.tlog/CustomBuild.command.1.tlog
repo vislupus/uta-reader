@@ -1,0 +1,28 @@
+^C:\USERS\N.BOJINOV\DOWNLOADS\FLUTTER\UTA_READER_APP\BUILD\WINDOWS\X64\CMAKEFILES\25C3EF72B0F6FA0090A8F1FD5A9DEA6A\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\Portable\flutter_windows_3.38.4-stable\flutter PROJECT_DIR=C:\Users\n.bojinov\Downloads\Flutter\uta_reader_app FLUTTER_ROOT=C:\Portable\flutter_windows_3.38.4-stable\flutter FLUTTER_EPHEMERAL_DIR=C:\Users\n.bojinov\Downloads\Flutter\uta_reader_app\windows\flutter\ephemeral PROJECT_DIR=C:\Users\n.bojinov\Downloads\Flutter\uta_reader_app FLUTTER_TARGET=C:\Users\n.bojinov\Downloads\Flutter\uta_reader_app\lib\main.dart DART_DEFINES=RkxVVFRFUl9WRVJTSU9OPTMuMzguNA==,RkxVVFRFUl9DSEFOTkVMPXN0YWJsZQ==,RkxVVFRFUl9HSVRfVVJMPWh0dHBzOi8vZ2l0aHViLmNvbS9mbHV0dGVyL2ZsdXR0ZXIuZ2l0,RkxVVFRFUl9GUkFNRVdPUktfUkVWSVNJT049NjZkZDkzZjlhMg==,RkxVVFRFUl9FTkdJTkVfUkVWSVNJT049YTVjYjk2MzY5ZQ==,RkxVVFRFUl9EQVJUX1ZFUlNJT049My4xMC4z DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=C:\Users\n.bojinov\Downloads\Flutter\uta_reader_app\.dart_tool\package_config.json C:/Portable/flutter_windows_3.38.4-stable/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\N.BOJINOV\DOWNLOADS\FLUTTER\UTA_READER_APP\BUILD\WINDOWS\X64\CMAKEFILES\31DA0CC23629B9E0B22383983AF82E82\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\N.BOJINOV\DOWNLOADS\FLUTTER\UTA_READER_APP\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/windows -BC:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64 --check-stamp-file C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

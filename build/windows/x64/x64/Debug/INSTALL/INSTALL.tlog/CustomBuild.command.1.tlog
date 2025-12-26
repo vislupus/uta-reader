@@ -1,0 +1,10 @@
+^C:\USERS\N.BOJINOV\DOWNLOADS\FLUTTER\UTA_READER_APP\BUILD\WINDOWS\X64\CMAKEFILES\1B746B6742C4B5B1680533BD93DEAAFF\INSTALL_FORCE.RULE
+setlocal
+cd .
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
