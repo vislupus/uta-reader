@@ -26,7 +26,11 @@ class InputSection extends StatelessWidget {
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 2)),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
         ],
       ),
       child: Column(
@@ -48,9 +52,15 @@ class InputSection extends StatelessWidget {
                 children: [
                   Text(
                     AppTexts.inputLabel,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(fontWeight: FontWeight.bold),
                   ),
-                  Text(AppTexts.inputHint, style: TextStyle(fontSize: 12, color: AppColors.textHint)),
+                  Text(
+                    AppTexts.inputHint,
+                    style: TextStyle(fontSize: 12, color: AppColors.textHint),
+                  ),
                 ],
               ),
             ],
@@ -58,16 +68,45 @@ class InputSection extends StatelessWidget {
           const SizedBox(height: 16),
           TextField(
             controller: controller,
-            minLines: 1,  // Започва с 1 ред
-            maxLines: 5,  // Нараства до 5 реда максимум
+            minLines: 3,
+            maxLines: 10,
             style: const TextStyle(fontSize: 20, height: 1.5),
             decoration: InputDecoration(
               hintText: '日本語のテキストを入力...',
               hintStyle: TextStyle(color: AppColors.textHint),
-              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               suffixIcon: controller.text.isNotEmpty
                   ? IconButton(icon: const Icon(Icons.clear), onPressed: onClear)
                   : null,
+            ),
+          ),
+          const SizedBox(height: 8),
+          // Съвет тук - под текстовото поле
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            decoration: BoxDecoration(
+              color: AppColors.primary.withOpacity(0.08),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              children: [
+                Icon(Icons.lightbulb_outline, 
+                  size: 16, 
+                  color: AppColors.primary,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    'Съвет: Използвай {{текст}} за да запазиш но игнорираш части като [Verse 1]',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: AppColors.textSecondary,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 16),
@@ -77,7 +116,12 @@ class InputSection extends StatelessWidget {
                 child: ElevatedButton.icon(
                   onPressed: isLoading ? null : onAnalyze,
                   icon: isLoading
-                      ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
+                      ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                              strokeWidth: 2, color: Colors.white),
+                        )
                       : const Icon(Icons.analytics_outlined),
                   label: Text(isLoading ? AppTexts.loading : AppTexts.analyzeButton),
                   style: ElevatedButton.styleFrom(
@@ -93,7 +137,8 @@ class InputSection extends StatelessWidget {
                   onPressed: isLoading ? null : onTranslate,
                   icon: const Icon(Icons.translate),
                   label: const Text(AppTexts.translateButton),
-                  style: OutlinedButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 14)),
+                  style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 14)),
                 ),
               ),
             ],

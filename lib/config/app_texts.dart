@@ -1,5 +1,5 @@
 class AppTexts {
-  static const String appTitle = 'Japanese Song Learner';
+  static const String appTitle = 'UtaReader';
   static const String appSubtitle = 'MeCab Morphological Analyzer';
   static const String inputLabel = 'Въведи японски текст';
   static const String inputHint = 'Напиши или постави японски текст...';

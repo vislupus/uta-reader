@@ -179,8 +179,8 @@ class _AnalyzerScreenState extends State<AnalyzerScreen> {
         child: _isInitializing
             ? _buildLoading()
             : _initError != null
-                ? _buildError()
-                : _buildContent(),
+            ? _buildError()
+            : _buildContent(),
       ),
     );
   }
@@ -275,7 +275,7 @@ class _AnalyzerScreenState extends State<AnalyzerScreen> {
 
   Widget _buildHeader() {
     return Container(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [AppColors.primary, const Color(0xFF7E57C2)],
@@ -291,52 +291,18 @@ class _AnalyzerScreenState extends State<AnalyzerScreen> {
               color: Colors.white.withOpacity(0.2),
               borderRadius: BorderRadius.circular(14),
             ),
-            child: const Text(
-              '日',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
+            child: const Icon(Icons.add, color: Colors.white, size: 28),
           ),
           const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  AppTexts.analyzeNew,
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      _japaneseService.isInitialized
-                          ? Icons.check_circle
-                          : Icons.hourglass_empty,
-                      size: 14,
-                      color: Colors.white.withOpacity(0.9),
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      _japaneseService.isInitialized
-                          ? 'MeCab готов'
-                          : 'MeCab зарежда...',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.white.withOpacity(0.9),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+          const Text(
+            'Нова песен',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
           ),
+          const Spacer(),
           IconButton(
             icon: const Icon(Icons.close, color: Colors.white),
             onPressed: () => Navigator.pop(context),
@@ -380,10 +346,9 @@ class _AnalyzerScreenState extends State<AnalyzerScreen> {
               const SizedBox(width: 12),
               Text(
                 'Информация за песента',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(fontWeight: FontWeight.bold),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -459,15 +424,7 @@ class _AnalyzerScreenState extends State<AnalyzerScreen> {
               ),
             ],
           ),
-          const SizedBox(height: 8),
-          Text(
-            'Съвет: Използвай {{текст}} за да запазиш но игнорираш части като [Verse 1]',
-            style: TextStyle(
-              fontSize: 12,
-              color: AppColors.textHint,
-              fontStyle: FontStyle.italic,
-            ),
-          ),
+          // МАХНАТ съвета - вече е в input_section
         ],
       ),
     );

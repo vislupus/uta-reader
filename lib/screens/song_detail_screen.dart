@@ -44,7 +44,7 @@ class _SongDetailScreenState extends State<SongDetailScreen> {
       final token = _currentSong.lines[lineIndex][tokenIndex];
       token.isSelected = !token.isSelected;
     });
-    
+
     final allSongs = await _storage.loadSongs();
     final index = allSongs.indexWhere((s) => s.id == _currentSong.id);
     if (index != -1) {
@@ -61,22 +61,23 @@ class _SongDetailScreenState extends State<SongDetailScreen> {
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
         elevation: 0,
+        title: Text(_currentSong.title),
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildHeader(),
-            // Линкове на един ред
-            _buildLinksRow(),
+            // Единна информационна лента
+            _buildInfoBar(),
             Padding(
               padding: const EdgeInsets.all(16),
               child: ResultSection(
                 lines: _currentSong.lines,
-                translation: _currentSong.translation.isNotEmpty 
-                    ? _currentSong.translation 
+                translation: _currentSong.translation.isNotEmpty
+                    ? _currentSong.translation
                     : null,
                 onTokenTap: _onTokenTap,
+                isViewMode: true, // Нов параметър за "Текст на песента"
               ),
             ),
           ],
@@ -85,10 +86,15 @@ class _SongDetailScreenState extends State<SongDetailScreen> {
     );
   }
 
-  Widget _buildHeader() {
+  /// Единна информационна лента с всичко
+  Widget _buildInfoBar() {
+    final videoId = _extractYouTubeVideoId(_currentSong.youtubeLink);
+    final sourceLinks = _currentSong.sourceLinks;
+    final hasYoutube = _currentSong.youtubeLink.isNotEmpty && videoId != null;
+    final hasSourceLinks = sourceLinks.isNotEmpty;
+
     return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [AppColors.primary, const Color(0xFF7E57C2)],
@@ -96,157 +102,127 @@ class _SongDetailScreenState extends State<SongDetailScreen> {
           end: Alignment.bottomRight,
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
-          Text(
-            _currentSong.title,
-            style: const TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+          // Заглавие и изпълнител
+          Expanded(
+            flex: 3,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  _currentSong.title,
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  children: [
+                    const Icon(Icons.person, color: Colors.white70, size: 16),
+                    const SizedBox(width: 6),
+                    Flexible(
+                      child: Text(
+                        _currentSong.artist,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.white70,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              const Icon(Icons.person, color: Colors.white70, size: 20),
-              const SizedBox(width: 8),
-              Text(
-                _currentSong.artist,
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.white70,
+
+          // Линкове към текста
+          if (hasSourceLinks) ...[
+            const SizedBox(width: 16),
+            ...sourceLinks.take(2).map((link) {
+              final displayText = Uri.tryParse(link)?.host ?? 'Линк';
+              return Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: InkWell(
+                  onTap: () => launchUrl(Uri.parse(link)),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.lyrics, size: 14, color: Colors.white),
+                        const SizedBox(width: 4),
+                        Text(
+                          displayText.length > 15
+                              ? '${displayText.substring(0, 15)}...'
+                              : displayText,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
+              );
+            }),
+          ],
 
-  /// YouTube thumbnail + линкове на един ред
-  Widget _buildLinksRow() {
-    final videoId = _extractYouTubeVideoId(_currentSong.youtubeLink);
-    final sourceLinks = _currentSong.sourceLinks;
-    
-    final hasYoutube = _currentSong.youtubeLink.isNotEmpty && videoId != null;
-    final hasSourceLinks = sourceLinks.isNotEmpty;
-    
-    if (!hasYoutube && !hasSourceLinks) {
-      return const SizedBox.shrink();
-    }
-
-    return Container(
-      margin: const EdgeInsets.all(16),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
           // YouTube thumbnail (малък)
-          if (hasYoutube)
+          if (hasYoutube) ...[
+            const SizedBox(width: 8),
             GestureDetector(
               onTap: () => launchUrl(Uri.parse(_currentSong.youtubeLink)),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.network(
-                      'https://img.youtube.com/vi/$videoId/mqdefault.jpg',
-                      width: 160,
-                      height: 90,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Container(
-                          width: 160,
-                          height: 90,
-                          color: Colors.black87,
-                          child: const Icon(Icons.video_library, size: 40, color: Colors.white54),
-                        );
-                      },
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.white.withOpacity(0.3), width: 2),
+                ),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(6),
+                      child: Image.network(
+                        'https://img.youtube.com/vi/$videoId/mqdefault.jpg',
+                        width: 80,
+                        height: 45,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            width: 80,
+                            height: 45,
+                            color: Colors.black54,
+                            child: const Icon(Icons.play_circle, color: Colors.white, size: 24),
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(8),
+                    Container(
+                      padding: const EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: const Icon(Icons.play_arrow, color: Colors.white, size: 16),
                     ),
-                    child: const Icon(Icons.play_arrow, color: Colors.white, size: 24),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          
-          if (hasYoutube && hasSourceLinks) const SizedBox(width: 16),
-          
-          // Линкове към текста
-          if (hasSourceLinks)
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.lyrics, size: 18, color: AppColors.primary),
-                      const SizedBox(width: 8),
-                      Text(
-                        'Източници на текста',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.textSecondary,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  ...sourceLinks.asMap().entries.map((entry) {
-                    final index = entry.key;
-                    final link = entry.value;
-                    final displayText = Uri.tryParse(link)?.host ?? 'Линк ${index + 1}';
-                    
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 6),
-                      child: InkWell(
-                        onTap: () => launchUrl(Uri.parse(link)),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.link, size: 16, color: AppColors.primary),
-                            const SizedBox(width: 6),
-                            Flexible(
-                              child: Text(
-                                displayText,
-                                style: TextStyle(
-                                  color: AppColors.primary,
-                                  decoration: TextDecoration.underline,
-                                  fontSize: 14,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  }),
-                ],
-              ),
-            ),
+          ],
         ],
       ),
     );

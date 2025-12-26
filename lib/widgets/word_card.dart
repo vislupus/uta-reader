@@ -22,13 +22,13 @@ class _WordCardState extends State<WordCard> {
 
   @override
   Widget build(BuildContext context) {
-    // Игнорирани текстове - показваме оригиналния текст, сив и неактивен
+    // Игнорирани текстове - ПО-ТЪМЕН текст, същия фон
     if (widget.token.isIgnored) {
       return Padding(
         padding: const EdgeInsets.only(top: _furiganaHeight + 6),
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: BoxDecoration(
             color: AppColors.surfaceVariant.withOpacity(0.6),
             borderRadius: BorderRadius.circular(8),
@@ -38,12 +38,12 @@ class _WordCardState extends State<WordCard> {
             ),
           ),
           child: Text(
-            widget.token.surface,  // Показва оригиналния текст: [Verse 1]
+            widget.token.surface,
             style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
+              fontSize: 16,  // По-голям размер
+              fontWeight: FontWeight.w600,  // По-дебел
               fontStyle: FontStyle.italic,
-              color: AppColors.textHint,
+              color: AppColors.textSecondary,  // По-тъмен цвят
             ),
           ),
         ),
@@ -65,7 +65,7 @@ class _WordCardState extends State<WordCard> {
       );
     }
 
-    // Незначещи думи (частици, помощни глаголи) - без hover ефект и без възможност за селекция
+    // Незначещи думи
     if (!widget.token.isMeaningful) {
       return Container(
         margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
@@ -148,7 +148,6 @@ class _WordCardState extends State<WordCard> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Furigana
                   SizedBox(
                     height: _furiganaHeight,
                     child: widget.token.showFurigana
@@ -162,8 +161,6 @@ class _WordCardState extends State<WordCard> {
                           )
                         : null,
                   ),
-                  
-                  // Surface
                   Text(
                     widget.token.surface,
                     style: TextStyle(
@@ -172,10 +169,7 @@ class _WordCardState extends State<WordCard> {
                       color: AppColors.textPrimary,
                     ),
                   ),
-                  
                   const SizedBox(height: 2),
-                  
-                  // POS линия
                   Container(
                     height: AppConfig.posIndicatorHeight,
                     constraints: const BoxConstraints(minWidth: 20),
@@ -184,10 +178,7 @@ class _WordCardState extends State<WordCard> {
                       borderRadius: BorderRadius.circular(2),
                     ),
                   ),
-                  
                   const SizedBox(height: 2),
-                  
-                  // Gloss
                   SizedBox(
                     height: _glossHeight,
                     child: widget.token.showGloss
@@ -216,20 +207,20 @@ class _WordCardState extends State<WordCard> {
   TextSpan _buildTooltip() {
     final token = widget.token;
     final posLabel = AppTexts.posLabels[token.pos] ?? token.pos;
-    
+
     return TextSpan(
       children: [
         TextSpan(
           text: token.surface,
-          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+          style: const TextStyle(
+              fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
         ),
-        
         if (token.reading.isNotEmpty)
           TextSpan(
-            text: '  (${token.furigana.isNotEmpty ? token.furigana : token.reading})',
+            text:
+                '  (${token.furigana.isNotEmpty ? token.furigana : token.reading})',
             style: TextStyle(fontSize: 14, color: Colors.white.withOpacity(0.7)),
           ),
-        
         if (token.baseForm.isNotEmpty && token.baseForm != token.surface) ...[
           const TextSpan(text: '\n'),
           TextSpan(
@@ -237,36 +228,37 @@ class _WordCardState extends State<WordCard> {
             style: TextStyle(fontSize: 12, color: Colors.white.withOpacity(0.7)),
           ),
         ],
-        
         const TextSpan(text: '\n\n'),
-        
         TextSpan(
           text: posLabel,
           style: TextStyle(
-            fontSize: 14, 
-            color: AppColors.getPosColor(token.pos), 
+            fontSize: 14,
+            color: AppColors.getPosColor(token.pos),
             fontWeight: FontWeight.bold,
           ),
         ),
-        
         if (token.meanings.isNotEmpty) ...[
           const TextSpan(text: '\n\n'),
           const TextSpan(
             text: 'Значения:\n',
-            style: TextStyle(fontSize: 12, color: Colors.white70, fontWeight: FontWeight.w600),
+            style: TextStyle(
+                fontSize: 12, color: Colors.white70, fontWeight: FontWeight.w600),
           ),
           for (int i = 0; i < token.meanings.length; i++)
             TextSpan(
-              text: '${i + 1}. ${token.meanings[i]}${i < token.meanings.length - 1 ? '\n' : ''}',
+              text:
+                  '${i + 1}. ${token.meanings[i]}${i < token.meanings.length - 1 ? '\n' : ''}',
               style: const TextStyle(fontSize: 13, color: Colors.white),
             ),
         ],
-        
-        if (token.meanings.isEmpty && token.gloss != null && token.gloss!.isNotEmpty) ...[
+        if (token.meanings.isEmpty &&
+            token.gloss != null &&
+            token.gloss!.isNotEmpty) ...[
           const TextSpan(text: '\n\n'),
           TextSpan(
             text: token.gloss!,
-            style: const TextStyle(fontSize: 14, color: Colors.white, fontWeight: FontWeight.w500),
+            style: const TextStyle(
+                fontSize: 14, color: Colors.white, fontWeight: FontWeight.w500),
           ),
         ],
       ],

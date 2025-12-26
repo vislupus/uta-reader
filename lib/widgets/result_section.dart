@@ -9,6 +9,7 @@ class ResultSection extends StatelessWidget {
   final Function(int, int) onTokenTap;
   final String? translation;
   final bool isTranslating;
+  final bool isViewMode; // Нов параметър
 
   const ResultSection({
     super.key,
@@ -16,9 +17,9 @@ class ResultSection extends StatelessWidget {
     required this.onTokenTap,
     this.translation,
     this.isTranslating = false,
+    this.isViewMode = false, // По подразбиране false (анализ)
   });
 
-  /// Брой значещи думи (съществителни, глаголи, прилагателни, наречия)
   int get meaningfulWords {
     int count = 0;
     for (final line in lines) {
@@ -27,7 +28,6 @@ class ResultSection extends StatelessWidget {
     return count;
   }
 
-  /// Общ брой думи (без символи и игнорирани)
   int get totalWords {
     int count = 0;
     for (final line in lines) {
@@ -95,9 +95,10 @@ class ResultSection extends StatelessWidget {
           else
             SelectableText(
               translation ?? '',
-              style: Theme.of(
-                context,
-              ).textTheme.bodyLarge?.copyWith(height: 1.6, fontSize: 16),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(height: 1.6, fontSize: 16),
             ),
         ],
       ),
@@ -113,17 +114,21 @@ class ResultSection extends StatelessWidget {
             color: AppColors.primary.withOpacity(0.1),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Icon(Icons.auto_awesome, color: AppColors.primary, size: 20),
+          child: Icon(
+            isViewMode ? Icons.music_note : Icons.auto_awesome,
+            color: AppColors.primary,
+            size: 20,
+          ),
         ),
         const SizedBox(width: 12),
         Text(
-          AppTexts.resultTitle,
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+          isViewMode ? 'Текст на песента' : AppTexts.resultTitle,
+          style: Theme.of(context)
+              .textTheme
+              .titleMedium
+              ?.copyWith(fontWeight: FontWeight.bold),
         ),
         const Spacer(),
-        // Показва: значещи / всички думи
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
@@ -205,14 +210,11 @@ class ResultSection extends StatelessWidget {
                   alignment: WrapAlignment.start,
                   crossAxisAlignment: WrapCrossAlignment.end,
                   children: [
-                    for (
-                      int tokenIndex = 0;
-                      tokenIndex < lines[lineIndex].length;
-                      tokenIndex++
-                    )
+                    for (int tokenIndex = 0;
+                        tokenIndex < lines[lineIndex].length;
+                        tokenIndex++)
                       WordCard(
                         token: lines[lineIndex][tokenIndex],
-                        // Само значещите думи могат да се кликат
                         onTap: lines[lineIndex][tokenIndex].isMeaningful
                             ? () => onTokenTap(lineIndex, tokenIndex)
                             : null,

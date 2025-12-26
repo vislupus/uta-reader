@@ -1,6 +1,6 @@
 class AppConfig {
   static const double fontSurface = 24.0;
-  static const double fontFurigana = 12.0;
+  static const double fontFurigana = 14.0;
   static const double fontGloss = 11.0;
   static const double cardPadding = 8.0;
   static const double cardMargin = 2.0;
