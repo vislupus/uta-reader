@@ -19,7 +19,7 @@ class JapaneseService {
   final Map<String, List<String>> _dictCache = {};
 
   Mecab? _mecab;
-  final JMDict _jmdict = JMDict(); // ← Singleton instance
+  final JMDict _jmdict = JMDict();
   bool _initialized = false;
   bool _dictInitialized = false;
 
@@ -27,7 +27,6 @@ class JapaneseService {
     if (_initialized) return;
 
     try {
-      // Инициализирай MeCab
       final dictPath = await _prepareMecabDictFromAssets(
         assetDir: 'assets/ipadic',
         dictName: 'ipadic',
@@ -39,9 +38,7 @@ class JapaneseService {
       _initialized = true;
       print('✅ MeCab initialized OK');
 
-      // Инициализирай JMDict (изтегля от интернет при първо стартиране)
       try {
-        // Проверка дали вече е инициализиран
         if (_jmdict.isNotEmpty) {
           _dictInitialized = true;
           print('✅ JMDict already loaded');
@@ -80,22 +77,75 @@ class JapaneseService {
       if (line.trim().isEmpty) {
         result.add([]);
       } else {
-        final tokens = _tokenizeLine(line);
+        // Използваме нов метод който обработва {{ }} правилно
+        final tokens = _tokenizeLineWithIgnored(line);
         result.add(tokens);
       }
     }
 
-    // Преведи и добави речникови значения
     await _enrichTokens(result);
 
     return result;
+  }
+
+  /// Токенизира ред като запазва текста в {{...}} като отделни ignored токени
+  List<WordToken> _tokenizeLineWithIgnored(String line) {
+    final tokens = <WordToken>[];
+    final regex = RegExp(r'\{\{([^}]*)\}\}');
+
+    int lastEnd = 0;
+
+    for (final match in regex.allMatches(line)) {
+      // Текст ПРЕДИ този мач - токенизирай нормално с MeCab
+      if (match.start > lastEnd) {
+        final normalText = line.substring(lastEnd, match.start);
+        if (normalText.trim().isNotEmpty) {
+          tokens.addAll(_tokenizeLine(normalText));
+        }
+      }
+
+      // Съдържанието между {{ }} - създай един ignored токен с оригиналния текст
+      final ignoredContent = match.group(1)?.trim() ?? '';
+      if (ignoredContent.isNotEmpty) {
+        tokens.add(
+          WordToken(
+            surface: ignoredContent, // Показва: [Verse 1]
+            pos: 'ignored',
+            baseForm: ignoredContent,
+          ),
+        );
+      }
+
+      lastEnd = match.end;
+    }
+
+    // Текст СЛЕД последния мач
+    if (lastEnd < line.length) {
+      final remainingText = line.substring(lastEnd);
+      if (remainingText.trim().isNotEmpty) {
+        tokens.addAll(_tokenizeLine(remainingText));
+      }
+    }
+
+    // Ако няма никакви {{...}} маркери, токенизирай целия ред нормално
+    if (tokens.isEmpty && line.trim().isNotEmpty) {
+      tokens.addAll(_tokenizeLine(line));
+    }
+
+    return tokens;
   }
 
   Future<String> translateToBulgarian(String text) async {
     if (text.isEmpty) return '';
 
     try {
-      final result = await _translator.translate(text, from: 'ja', to: 'bg');
+      // Премахваме {{ }} маркерите за превода
+      final cleanText = text.replaceAll(RegExp(r'\{\{[^}]*\}\}'), '');
+      final result = await _translator.translate(
+        cleanText,
+        from: 'ja',
+        to: 'bg',
+      );
       return result.text;
     } catch (e) {
       return 'Грешка при превод: $e';
@@ -299,11 +349,9 @@ class JapaneseService {
     return buffer.toString();
   }
 
-  /// Обогатява токените с превод и речникови значения
   Future<void> _enrichTokens(List<List<WordToken>> lines) async {
     final wordsToProcess = <String>{};
 
-    // Събери всички значещи думи
     for (final line in lines) {
       for (final token in line) {
         if (token.isMeaningful) {
@@ -317,14 +365,11 @@ class JapaneseService {
       }
     }
 
-    // Вземи значения от JMDict и преведи
     for (final word in wordsToProcess) {
-      // JMDict
       if (!_dictCache.containsKey(word)) {
         _dictCache[word] = _lookupDictionary(word);
       }
 
-      // Google Translate (за gloss под думата) - ВИНАГИ
       if (!_glossCache.containsKey(word)) {
         try {
           final result = await _translator.translate(
@@ -334,14 +379,12 @@ class JapaneseService {
           );
           _glossCache[word] = result.text;
         } catch (_) {
-          // Ако Google Translate се провали, използвай първото JMDict значение
           final dictMeanings = _dictCache[word] ?? [];
           _glossCache[word] = dictMeanings.isNotEmpty ? dictMeanings.first : '';
         }
       }
     }
 
-    // Приложи към токените
     for (final line in lines) {
       for (int i = 0; i < line.length; i++) {
         final token = line[i];
@@ -358,24 +401,17 @@ class JapaneseService {
     }
   }
 
-  /// Търси в JMDict и връща първите 3 значения
   List<String> _lookupDictionary(String word) {
     if (!_dictInitialized) return [];
 
     try {
-      // JMDict API: search(keyword, limit, offset)
-      final results = _jmdict.search(
-        keyword: word,
-        limit: 5, // Вземи до 5 резултата
-      );
+      final results = _jmdict.search(keyword: word, limit: 5);
 
-      // ✅ Проверка за null
       if (results == null || results.isEmpty) return [];
 
       final meanings = <String>[];
 
       for (final entry in results) {
-        // Вземи glosses от sense elements
         for (final sense in entry.senseElements) {
           for (final glossary in sense.glossaries) {
             if (meanings.length < 3 && !meanings.contains(glossary.text)) {

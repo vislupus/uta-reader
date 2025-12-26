@@ -1,1 +1,0 @@
- C:\\Users\\n.bojinov\\Downloads\\Flutter\\uta_reader_app\\build\\88f077e0a4a1b24cde0cc45860e9457f\\dart_build_result.json: 

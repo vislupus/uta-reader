@@ -27,11 +27,11 @@ class ResultSection extends StatelessWidget {
     return count;
   }
 
-  /// Общ брой думи (без символи)
+  /// Общ брой думи (без символи и игнорирани)
   int get totalWords {
     int count = 0;
     for (final line in lines) {
-      count += line.where((t) => !t.isSymbol).length;
+      count += line.where((t) => !t.isSymbol && !t.isIgnored).length;
     }
     return count;
   }

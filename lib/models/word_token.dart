@@ -10,7 +10,7 @@ class WordToken {
   final String conjugationType;
   final String conjugationForm;
   String? gloss;
-  final List<String> meanings;  // От JMDict
+  final List<String> meanings;
   bool isSelected;
 
   WordToken({
@@ -50,6 +50,8 @@ class WordToken {
   
   bool get isSymbol => pos == 'symbol';
   
+  bool get isIgnored => pos == 'ignored';
+  
   /// Значеща дума - може да се селектира
   bool get isMeaningful => ['noun', 'verb', 'adjective', 'adverb'].contains(pos);
 
@@ -70,4 +72,28 @@ class WordToken {
       isSelected: isSelected ?? this.isSelected,
     );
   }
+
+  Map<String, dynamic> toJson() => {
+    'surface': surface,
+    'reading': reading,
+    'furigana': furigana,
+    'baseForm': baseForm,
+    'pos': pos,
+    'posJapanese': posJapanese,
+    'gloss': gloss,
+    'meanings': meanings,
+    'isSelected': isSelected,
+  };
+
+  factory WordToken.fromJson(Map<String, dynamic> json) => WordToken(
+    surface: json['surface'],
+    reading: json['reading'] ?? '',
+    furigana: json['furigana'] ?? '',
+    baseForm: json['baseForm'] ?? '',
+    pos: json['pos'] ?? 'other',
+    posJapanese: json['posJapanese'] ?? '',
+    gloss: json['gloss'],
+    meanings: List<String>.from(json['meanings'] ?? []),
+    isSelected: json['isSelected'] ?? false,
+  );
 }

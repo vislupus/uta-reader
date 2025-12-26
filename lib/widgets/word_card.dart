@@ -22,6 +22,34 @@ class _WordCardState extends State<WordCard> {
 
   @override
   Widget build(BuildContext context) {
+    // Игнорирани текстове - показваме оригиналния текст, сив и неактивен
+    if (widget.token.isIgnored) {
+      return Padding(
+        padding: const EdgeInsets.only(top: _furiganaHeight + 6),
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+          decoration: BoxDecoration(
+            color: AppColors.surfaceVariant.withOpacity(0.6),
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: AppColors.textHint.withOpacity(0.3),
+              width: 1,
+            ),
+          ),
+          child: Text(
+            widget.token.surface,  // Показва оригиналния текст: [Verse 1]
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              fontStyle: FontStyle.italic,
+              color: AppColors.textHint,
+            ),
+          ),
+        ),
+      );
+    }
+
     // Символи - просто Text
     if (widget.token.isSymbol) {
       return Padding(
@@ -191,20 +219,17 @@ class _WordCardState extends State<WordCard> {
     
     return TextSpan(
       children: [
-        // Дума
         TextSpan(
           text: token.surface,
           style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         
-        // Четене
         if (token.reading.isNotEmpty)
           TextSpan(
             text: '  (${token.furigana.isNotEmpty ? token.furigana : token.reading})',
             style: TextStyle(fontSize: 14, color: Colors.white.withOpacity(0.7)),
           ),
         
-        // Основна форма
         if (token.baseForm.isNotEmpty && token.baseForm != token.surface) ...[
           const TextSpan(text: '\n'),
           TextSpan(
@@ -215,7 +240,6 @@ class _WordCardState extends State<WordCard> {
         
         const TextSpan(text: '\n\n'),
         
-        // POS
         TextSpan(
           text: posLabel,
           style: TextStyle(
@@ -225,7 +249,6 @@ class _WordCardState extends State<WordCard> {
           ),
         ),
         
-        // Речникови значения от JMDict
         if (token.meanings.isNotEmpty) ...[
           const TextSpan(text: '\n\n'),
           const TextSpan(
@@ -239,7 +262,6 @@ class _WordCardState extends State<WordCard> {
             ),
         ],
         
-        // Google превод (ако няма речникови значения)
         if (token.meanings.isEmpty && token.gloss != null && token.gloss!.isNotEmpty) ...[
           const TextSpan(text: '\n\n'),
           TextSpan(

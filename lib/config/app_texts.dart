@@ -1,5 +1,5 @@
 class AppTexts {
-  static const String appTitle = 'Japanese Text Analyzer';
+  static const String appTitle = 'Japanese Song Learner';
   static const String appSubtitle = 'MeCab Morphological Analyzer';
   static const String inputLabel = 'Въведи японски текст';
   static const String inputHint = 'Напиши или постави японски текст...';
@@ -12,6 +12,17 @@ class AppTexts {
   static const String translating = 'Превеждане...';
   static const String noText = 'Няма въведен текст';
   static const String initializingMecab = 'Инициализиране на MeCab...';
+  static const String songsListTitle = 'Моите песни';
+  static const String addSong = 'Добави нова песен';
+  static const String songTitle = 'Заглавие';
+  static const String artist = 'Изпълнител';
+  static const String sourceUrl = 'Линк към източник';
+  static const String youtubeUrl = 'YouTube линк';
+  static const String saveButton = 'Запази песента';
+  static const String deleteButton = 'Изтрий';
+  static const String progressLabel = 'Прогрес: ';
+  static const String noSongs = 'Все още нямате добавени песни.';
+  static const String analyzeNew = 'Нова песен';
 
   static const Map<String, String> posLabels = {
     'noun': 'съществително',

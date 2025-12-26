@@ -6,6 +6,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   mecab_for_flutter
   objectbox_flutter_libs
   screen_retriever_windows
+  url_launcher_windows
   window_manager
 )
 

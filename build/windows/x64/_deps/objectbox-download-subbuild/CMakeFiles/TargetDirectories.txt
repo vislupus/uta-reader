@@ -1,3 +1,0 @@
-C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/CMakeFiles/objectbox-download-populate.dir
-C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/CMakeFiles/ALL_BUILD.dir
-C:/Users/n.bojinov/Downloads/Flutter/uta_reader_app/build/windows/x64/_deps/objectbox-download-subbuild/CMakeFiles/ZERO_CHECK.dir
